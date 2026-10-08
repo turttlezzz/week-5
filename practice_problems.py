@@ -13,9 +13,16 @@ Output: False
 """
 
 def has_duplicates(product_ids):
-    # Your implementation here
-    pass
+    seen = set()
 
+    for id in product_ids:
+        if id in seen:
+            return True
+        seen.add(id)
+
+    return False
+
+#set is the correct data structure to fit this task. This is because a set does not allow for duplicate values. Adding and checking ids will take O(1) time.
 
 """
 Problem 2: Order Manager
@@ -32,14 +39,19 @@ task_queue.remove_oldest_task() → "Email follow-up"
 
 class TaskQueue:
     def __init__(self):
-        # Your initialization here
-        pass
+        self.tasks = []
+        
 
     def add_task(self, task):
-        pass
+        self.tasks.append(task)
 
     def remove_oldest_task(self):
-        pass
+        if not self.tasks:
+            return "list is empty"
+        
+        return self.tasks.pop(0)
+
+#a queue is the correct data structure because it uses FIFO, making removing the oldest task simple. Adding a task takes O(1) time, while removing the oldest task takes 0(n) time.
 
 
 """
@@ -57,10 +69,12 @@ tracker.get_unique_count() → 2
 
 class UniqueTracker:
     def __init__(self):
-        pass
+        self.values = set()
 
     def add(self, value):
-        pass
+        self.values.add(value)
 
     def get_unique_count(self):
-        pass
+        return len(self.values)
+
+#set is the correct data structure because it only stores unique values, meaning the duplicates are automatically ignored. Adding values and finding the number of unique values both take O(1) time.
